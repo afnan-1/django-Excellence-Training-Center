@@ -1,0 +1,67 @@
+** settings.py **
+ALLOWED_HOSTS = ['*']
+
+
+** urls.py ecomerce **
+from django.urls import path, include
+from django.contrib import admin
+
+	path('', home_page, name='home'),
+	path('about/', about_page, name='about'),
+	path('contact/', contact_page, name='contact'),
+	path('service/', service_page, name='service'),
+    path('login/', login_page, name='login'),
+    path('register/', register_page, name='register'),
+    path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
+    path('products/', include("products.urls")),
+    path('search/', include("search.urls")),
+ #    path('featured/', ProductFeaturedListView.as_view()),
+ #    path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
+ #    path('products/', ProductListView.as_view()),
+ #    path('products-fbv/', product_list_view),
+ #    # path('products/<int:pk>/', ProductDetailView.as_view()),
+ #    path('products/<slug>/', ProductDetailSlugView.as_view()),
+ #    path('products-fbv/<int:pk>/', product_detail_view),
+	# path('call/', call_page),
+
+
+
+** views.py **
+if request.user.is_authenticated:
+#print(request.user.is_authenticated)
+
+def service_page(request):
+	
+	return render(request, "service_page.html")
+
+*** product app  ***
+** admin.py **
+class ProductAdmin(admin.ModelAdmin):
+	search_fields=('slug','title','Price')
+	list_display = ['__str__','slug','Price',]
+admin.site.site_header = "Excellence Training Center "
+admin.site.site_title = "Excellence Training Center"
+admin.site.index_title = "Welcome to Excellence Training Center"
+admin.site.register(Product, ProductAdmin)
+
+** urls.py **
+from django.urls import path
+app_name = 'products'
+urlpatterns = [
+    path('', ProductListView.as_view(), name='list'),
+    path('<slug>/', ProductDetailSlugView.as_view(), name='detail'),
+]
+
+
+*** search app ***
+** urls.py **
+from django.urls import path
+app_name = 'search'
+urlpatterns = [
+    path('', SearchProductView.as_view(), name='query'),
+]
+
+
+
+** delete previous virtualenv and create new env. **
+in requirement.txt all requirement are in one place

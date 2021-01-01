@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+
+  <h1>contact page</h1>
+  <p>&nbsp;</p>
+  <hr/>
+  <p>&nbsp;</p>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-12'>
+        <form method='POST'> {% csrf_token %}
+          <div class='col-sm-6'> 
+         {{ form }}
+         <p>&nbsp;</p>
+         <button type='submit' class='btn btn-dark'> Click here to submit </button>
+       </div>
+        </form>
+<!-- 
+        <input type='text' class='form-control' placeholder='name' name='full_name'>
+          <input type='email' class='form-control' placeholder='email' name='email_new'>
+          <input type='text' class='form-control' placeholder='contact' name='Contact'>
+          <br/>
+          <button type='submit' class='btn btn-dark'> Click here to submit </button>
+
+ -->
+        </div>
+      </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+{% endblock %}
